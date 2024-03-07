@@ -15,7 +15,7 @@ public class conectaDAO {
     private Connection conexao;
     
     //metodo para conectar no banco de dados
-    public void conexao(){      
+    public void conectar(){      
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection("jdbc:mysql://localhost/uc11", "usuario", "senha");
