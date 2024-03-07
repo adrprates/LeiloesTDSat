@@ -1,17 +1,9 @@
 package leiloestdsat.conexaojdbc;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-
-
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 /**
  *
@@ -19,17 +11,40 @@ import javax.swing.JOptionPane;
  */
 public class conectaDAO {
     
-    public Connection connectDB(){
-        Connection conn = null;
-        
+    //variavel
+    private Connection conexao;
+    
+    //metodo para conectar no banco de dados
+    public void conexao(){      
         try {
-        
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/uc11?user=root&password=");
-            
-        } catch (SQLException erro){
-            JOptionPane.showMessageDialog(null, "Erro ConectaDAO" + erro.getMessage());
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conexao = DriverManager.getConnection("jdbc:mysql://localhost/uc11", "usuario", "senha");
+            System.out.println("Conexão realizada com sucesso!");
+        } catch (ClassNotFoundException e){
+            JOptionPane.showMessageDialog(null, "Falha ao carregar classe de"
+                    + " conexão. Classe não encontrada." + e.getMessage());
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Falha ao se conectar com o"
+                    + " banco de dados. Erro de SQL." + e.getMessage());
         }
-        return conn;
+    }
+    
+    //metodo para desconectar do banco de dados
+    public void desconectar(){
+        try{
+            if(conexao != null && !conexao.isClosed()){
+                conexao.close();
+                System.out.println("Desconexão realizada com sucesso!");
+            }
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Falha ao realizar desconexão."
+                    + e.getMessage());
+        }
+    }
+    
+    //get Conexao
+    public Connection getConexao(){
+        return conexao;
     }
     
 }
