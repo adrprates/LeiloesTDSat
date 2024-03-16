@@ -2,7 +2,7 @@ package leiloestdsat.telas;
 
 
 import leiloestdsat.produto.ProdutosDTO;
-import leiloestdsat.produto.ProdutosDAO;
+import leiloestdsat.produto.ProdutosCadastrarDAO;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -142,7 +142,7 @@ public class listagemVIEW extends javax.swing.JFrame {
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
         String id = id_produto_venda.getText();
         
-        ProdutosDAO produtosdao = new ProdutosDAO();
+        ProdutosCadastrarDAO produtosdao = new ProdutosCadastrarDAO();
         
         //produtosdao.venderProduto(Integer.parseInt(id));
         listarProdutos();
@@ -207,7 +207,7 @@ public class listagemVIEW extends javax.swing.JFrame {
 
     private void listarProdutos(){
         try {
-            ProdutosDAO produtosdao = new ProdutosDAO();
+            ProdutosCadastrarDAO produtosdao = new ProdutosCadastrarDAO();
             
             DefaultTableModel model = (DefaultTableModel) listaProdutos.getModel();
             model.setNumRows(0);

@@ -1,6 +1,6 @@
 package leiloestdsat.telas;
 
-import leiloestdsat.produto.ProdutosDAO;
+import leiloestdsat.produto.ProdutosCadastrarDAO;
 import leiloestdsat.produto.ProdutosDTO;
 
 /*
@@ -153,7 +153,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
         produto.setValor(Integer.parseInt(valor));
         produto.setStatus(status);
         
-        ProdutosDAO produtodao = new ProdutosDAO();
+        ProdutosCadastrarDAO produtodao = new ProdutosCadastrarDAO();
         produtodao.cadastrarProduto(produto);
         
     }//GEN-LAST:event_btnCadastrarActionPerformed

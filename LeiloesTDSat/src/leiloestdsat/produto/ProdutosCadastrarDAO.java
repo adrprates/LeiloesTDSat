@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
  *
  * @author Adriano
  */
-public class ProdutosDAO {
+public class ProdutosCadastrarDAO {
     
     public void cadastrarProduto (ProdutosDTO produto){
         try{
