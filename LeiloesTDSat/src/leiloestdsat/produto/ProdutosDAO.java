@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Adm
+ * @author Adriano
  */
 public class ProdutosDAO {
     
@@ -24,7 +24,7 @@ public class ProdutosDAO {
                     + "(?, ?, ?)";
             PreparedStatement consulta = conexao.getConexao().prepareStatement(sql);
             consulta.setString(1, produto.getNome());
-            consulta.setDouble(2, produto.getValor());
+            consulta.setBigDecimal(2, produto.getValor());
             consulta.setString(3, produto.getStatus());
             
             //executa instrucao SQL

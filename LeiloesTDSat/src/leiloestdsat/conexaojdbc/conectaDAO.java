@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Adm
+ * @author Adriano
  */
 public class conectaDAO {
     

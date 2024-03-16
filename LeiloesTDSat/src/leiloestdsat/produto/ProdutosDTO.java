@@ -1,21 +1,18 @@
 package leiloestdsat.produto;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+import java.math.BigDecimal;
 
 /**
  *
- * @author Adm
+ * @author Adriano
  */
 public class ProdutosDTO {
-    private Integer id;
+    private int id;
     private String nome;
-    private Integer valor;
+    private BigDecimal valor;
     private String status;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -23,7 +20,7 @@ public class ProdutosDTO {
         return nome;
     }
 
-    public Integer getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
@@ -31,7 +28,7 @@ public class ProdutosDTO {
         return status;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -39,7 +36,7 @@ public class ProdutosDTO {
         this.nome = nome;
     }
 
-    public void setValor(Integer valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 
