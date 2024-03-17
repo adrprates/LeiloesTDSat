@@ -1,16 +1,14 @@
 package leiloestdsat.telas;
 
+import java.math.BigDecimal;
 import leiloestdsat.produto.ProdutosCadastrarDAO;
 import leiloestdsat.produto.ProdutosDTO;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+import leiloestdsat.produto.ProdutosDTOCadastrarController;
+import leiloestdsat.produto.ProdutosDTOValidar;
 
 /**
  *
- * @author Adm
+ * @author Adriano
  */
 public class cadastroVIEW extends javax.swing.JFrame {
 
@@ -38,7 +36,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
         cadastroValor = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        btnCadastrar = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
         btnProdutos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,11 +58,11 @@ public class cadastroVIEW extends javax.swing.JFrame {
             }
         });
 
-        btnCadastrar.setBackground(new java.awt.Color(153, 255, 255));
-        btnCadastrar.setText("Cadastrar");
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvar.setBackground(new java.awt.Color(153, 255, 255));
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
             }
         });
 
@@ -83,7 +81,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(230, 230, 230)
-                        .addComponent(btnCadastrar))
+                        .addComponent(btnSalvar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(154, 154, 154)
                         .addComponent(jLabel1)))
@@ -128,7 +126,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(cadastroValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addComponent(btnCadastrar)
+                .addComponent(btnSalvar)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
@@ -144,19 +142,30 @@ public class cadastroVIEW extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cadastroNomeActionPerformed
 
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        ProdutosDTO produto = new ProdutosDTO();
-        String nome = cadastroNome.getText();
-        String valor = cadastroValor.getText();
-        String status = "A Venda";
-        produto.setNome(nome);
-        produto.setValor(Integer.parseInt(valor));
-        produto.setStatus(status);
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        //variaveis
+        String strNome = cadastroNome.getText();
+        String strValor = cadastroValor.getText();
+        String strStatus = "A Venda";
         
-        ProdutosCadastrarDAO produtodao = new ProdutosCadastrarDAO();
-        produtodao.cadastrarProduto(produto);
+        //convertendo valor para BigDecimal
+        BigDecimal valorBigDecimal = new BigDecimal(strValor);
         
-    }//GEN-LAST:event_btnCadastrarActionPerformed
+        //criando objeto para produto
+        ProdutosDTO p = new ProdutosDTO();
+        
+        //atribuindo dados
+        p.setNome(strNome);
+        p.setValor(valorBigDecimal);
+        p.setStatus(strStatus);
+        
+        //tratando o preenchimento de dados
+        ProdutosDTOValidar validar = new ProdutosDTOValidar();
+        ProdutosCadastrarDAO cadastrar = new ProdutosCadastrarDAO();
+        ProdutosDTOCadastrarController control = new ProdutosDTOCadastrarController(validar, cadastrar);
+        
+        control.adequarProduto(p);  
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
         listagemVIEW listagem = new listagemVIEW(); 
@@ -199,8 +208,8 @@ public class cadastroVIEW extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnProdutos;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JTextField cadastroNome;
     private javax.swing.JTextField cadastroValor;
     private javax.swing.JLabel jLabel1;
