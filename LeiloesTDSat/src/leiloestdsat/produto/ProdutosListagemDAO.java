@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class ProdutosListagemDAO {
     
     //metodo para listagem de produtos
-    public static List<ProdutosDTO> listatProdutos(){
+    public static List<ProdutosDTO> listarProdutos(){
         //criando lista de produtos
         List<ProdutosDTO> lista = new ArrayList<ProdutosDTO>();
         try{
