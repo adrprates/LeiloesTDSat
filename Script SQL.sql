@@ -21,11 +21,15 @@ SET time_zone = "+00:00";
 -- Banco de dados: `uc11`
 --
 
+CREATE DATABASE uc11;
+
 -- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `produtos`
 --
+
+USE uc11;
 
 CREATE TABLE `produtos` (
   `id` bigint(20) UNSIGNED NOT NULL,
