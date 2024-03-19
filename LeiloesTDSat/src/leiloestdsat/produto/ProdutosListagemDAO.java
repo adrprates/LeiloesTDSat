@@ -26,7 +26,7 @@ public class ProdutosListagemDAO {
             conexao.conectar();
             
             //instrucao SQL que sera executada
-            String sql = "SELECT * FROM produtos";
+            String sql = "SELECT * FROM produtos WHRE status = 'A Venda';";
             PreparedStatement consulta = conexao.getConexao().prepareStatement(sql);
             
             //executa instrucao SQL
