@@ -148,8 +148,15 @@ public class cadastroVIEW extends javax.swing.JFrame {
         String strValor = cadastroValor.getText();
         String strStatus = "A Venda";
         
-        //convertendo valor para BigDecimal
-        BigDecimal valorBigDecimal = new BigDecimal(strValor);
+        //declarando BigDecimal
+        BigDecimal valorBigDecimal;
+        
+        try{
+            //convertendo valor para BigDecimal
+            valorBigDecimal = new BigDecimal(strValor);
+        } catch(NumberFormatException e){
+            valorBigDecimal = new BigDecimal(-1);
+        }
         
         //criando objeto para produto
         ProdutosDTO p = new ProdutosDTO();
