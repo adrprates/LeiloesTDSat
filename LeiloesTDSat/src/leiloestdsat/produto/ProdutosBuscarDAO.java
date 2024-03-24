@@ -15,7 +15,7 @@ public class ProdutosBuscarDAO {
     //metodo para localizar o produto no banco de dados
     public static ProdutosDTO buscarProduto(int id){
         //criando objeto de produto
-        ProdutosDTO p = new ProdutosDTO();
+        ProdutosDTO p = null;
         try{
             //criando objeto para fazer conexao com o banco de dados
             conectaDAO conexao = new conectaDAO();
