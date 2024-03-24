@@ -1,9 +1,12 @@
 package leiloestdsat.telas;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import leiloestdsat.produto.ProdutosBuscarDAO;
 import leiloestdsat.produto.ProdutosDTO;
 import leiloestdsat.produto.ProdutosListagemDAO;
+import leiloestdsat.produto.ProdutosVenderDAO;
 
 /**
  *
@@ -123,12 +126,24 @@ public class listagemVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        //String id = id_produto_venda.getText();
+        //variavel
+        String strID = id_produto_venda.getText();
         
-        //ProdutosCadastrarDAO produtosdao = new ProdutosCadastrarDAO();
+        //convertendo para tipo inteiro
+        int id = Integer.parseInt(strID);
         
-        //produtosdao.venderProduto(Integer.parseInt(id));
-        //listarProdutos();
+        //verificando a existencia do produto
+        if(ProdutosBuscarDAO.buscarProduto(id) != null){
+           int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente vender esse produto?");
+           if(resposta == 0){
+               ProdutosVenderDAO.venderProduto(id);
+               
+               //atualiza os dados da tabela
+               listaProdutos.setModel(montarTabela(ProdutosListagemDAO.listarProdutos()));
+               jScrollPane1.setViewportView(listaProdutos);
+           }
+        }
+        
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
