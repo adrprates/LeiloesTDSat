@@ -148,7 +148,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
         String strValor = cadastroValor.getText();
         String strStatus = "A Venda";
         
-        //declarando BigDecimal
+        //declarando variavel para valor
         BigDecimal valorBigDecimal;
         
         try{

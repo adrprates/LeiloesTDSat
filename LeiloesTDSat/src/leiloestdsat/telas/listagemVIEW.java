@@ -129,8 +129,14 @@ public class listagemVIEW extends javax.swing.JFrame {
         //variavel
         String strID = id_produto_venda.getText();
         
-        //convertendo para tipo inteiro
-        int id = Integer.parseInt(strID);
+        //declarando variavel para id
+        int id;
+        
+        try{
+            id = Integer.parseInt(strID);
+        } catch(NumberFormatException e){
+            id = -1;
+        }
         
         //verificando a existencia do produto
         if(ProdutosBuscarDAO.buscarProduto(id)){
