@@ -134,22 +134,21 @@ public class listagemVIEW extends javax.swing.JFrame {
         
         try{
             id = Integer.parseInt(strID);
-        } catch(NumberFormatException e){
-            id = -1;
-        }
-        
-        //verificando a existencia do produto
-        if(ProdutosBuscarDAO.buscarProduto(id)){
-           int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente vender esse produto?");
-           if(resposta == 0){
-               ProdutosVenderDAO.venderProduto(id);
+            //verificando a existencia do produto
+            if(ProdutosBuscarDAO.buscarProduto(id)){
+                int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente vender esse produto?");
+                if(resposta == 0){
+                    ProdutosVenderDAO.venderProduto(id);
                
-               //atualiza os dados da tabela
-               listaProdutos.setModel(montarTabela(ProdutosListagemDAO.listarProdutos()));
-               jScrollPane1.setViewportView(listaProdutos);
-           }
-        } else{
-            JOptionPane.showMessageDialog(null, "Produto não existente ou já vendido.");
+                    //atualiza os dados da tabela
+                    listaProdutos.setModel(montarTabela(ProdutosListagemDAO.listarProdutos()));
+                    jScrollPane1.setViewportView(listaProdutos);
+                }
+            } else{
+                JOptionPane.showMessageDialog(null, "Produto não existente ou já vendido.");
+        }
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Valor de ID inválido.");
         }
         
     }//GEN-LAST:event_btnVenderActionPerformed
