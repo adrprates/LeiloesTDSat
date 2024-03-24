@@ -133,7 +133,7 @@ public class listagemVIEW extends javax.swing.JFrame {
         int id = Integer.parseInt(strID);
         
         //verificando a existencia do produto
-        if(ProdutosBuscarDAO.buscarProduto(id) != null){
+        if(ProdutosBuscarDAO.buscarProduto(id)){
            int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente vender esse produto?");
            if(resposta == 0){
                ProdutosVenderDAO.venderProduto(id);

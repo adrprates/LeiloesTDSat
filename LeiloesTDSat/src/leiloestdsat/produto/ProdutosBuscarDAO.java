@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
 public class ProdutosBuscarDAO {
     
     //metodo para localizar o produto no banco de dados
-    public static ProdutosDTO buscarProduto(int id){
-        //criando objeto de produto
-        ProdutosDTO p = null;
+    public static boolean buscarProduto(int id){
+        //criando variavel booleana
+        boolean produtoExiste = false;
         try{
             //criando objeto para fazer conexao com o banco de dados
             conectaDAO conexao = new conectaDAO();
@@ -32,10 +32,7 @@ public class ProdutosBuscarDAO {
             ResultSet resposta = consulta.executeQuery();
             
             if(resposta.next()){
-                p.setId(resposta.getInt("id"));
-                p.setNome(resposta.getString("nome"));
-                p.setValor(resposta.getBigDecimal("valor"));
-                p.setStatus(resposta.getString("status"));
+                produtoExiste = true;
             }
             
             //desconexao com o banco de dados
@@ -45,6 +42,6 @@ public class ProdutosBuscarDAO {
                     + " produto no banco de dados" + e.getMessage());
         }
         
-        return p;
+        return produtoExiste;
     }
 }
