@@ -142,6 +142,8 @@ public class listagemVIEW extends javax.swing.JFrame {
                listaProdutos.setModel(montarTabela(ProdutosListagemDAO.listarProdutos()));
                jScrollPane1.setViewportView(listaProdutos);
            }
+        } else{
+            JOptionPane.showMessageDialog(null, "Produto não existente ou já vendido.");
         }
         
     }//GEN-LAST:event_btnVenderActionPerformed

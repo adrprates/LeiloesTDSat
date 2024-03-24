@@ -18,7 +18,7 @@ public class conectaDAO {
     public void conectar(){      
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conexao = DriverManager.getConnection("jdbc:mysql://localhost/uc11", "root", "q1w2e3r4@");
+            conexao = DriverManager.getConnection("jdbc:mysql://localhost/uc11", "usuario", "senha");
             System.out.println("Conexão realizada com sucesso!");
         } catch (ClassNotFoundException e){
             JOptionPane.showMessageDialog(null, "Falha ao carregar classe de"
