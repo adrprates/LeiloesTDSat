@@ -4,6 +4,11 @@
  */
 package leiloestdsat.telas;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import leiloestdsat.produto.ProdutosDTO;
+import leiloestdsat.produto.ProdutosListagemVendasDAO;
+
 /**
  *
  * @author Adriano
@@ -32,7 +37,6 @@ public class vendaVIEW extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(548, 471));
 
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -41,7 +45,7 @@ public class vendaVIEW extends javax.swing.JFrame {
             }
         });
 
-        listaProdutos.setModel(montarTabela(ProdutosListagemDAO.listarProdutos()));
+        listaProdutos.setModel(montarTabela(ProdutosListagemVendasDAO.listarProdutosVendidos()));
         jScrollPane1.setViewportView(listaProdutos);
 
         jLabel1.setFont(new java.awt.Font("Lucida Fax", 0, 18)); // NOI18N
@@ -116,6 +120,34 @@ public class vendaVIEW extends javax.swing.JFrame {
                 new vendaVIEW().setVisible(true);
             }
         });
+    }
+    
+    public DefaultTableModel montarTabela(List<ProdutosDTO> lista){
+        
+        //valores das colunas da tabela
+        String[] colunas = {"ID", "NOME", "VALOR", "STATUS"};
+        
+        //criando tabela
+        DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
+        
+        for(int i = 0; i < lista.size(); i++){
+            
+            ProdutosDTO p = lista.get(i);
+            
+            String valorBigDecimal = p.getValor().toString();
+            
+            System.out.println();
+            String linha[] = {
+                Integer.toString(p.getId()),
+                p.getNome(),
+                valorBigDecimal,
+                p.getStatus()
+            };
+            
+            tabela.addRow(linha);
+        }
+        
+        return tabela;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
