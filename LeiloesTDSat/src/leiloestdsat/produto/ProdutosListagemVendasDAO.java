@@ -12,10 +12,10 @@ import javax.swing.JOptionPane;
  *
  * @author Adriano
  */
-public class ProdutosListagemDAO {
+public class ProdutosListagemVendasDAO {
     
-    //metodo para listagem de produtos
-    public static List<ProdutosDTO> listarProdutos(){
+    //metodo para listagem de produtos vendidos
+    public static List<ProdutosDTO> listarProdutosVendidos(){
         //criando lista de produtos
         List<ProdutosDTO> lista = new ArrayList<ProdutosDTO>();
         try{
@@ -26,7 +26,7 @@ public class ProdutosListagemDAO {
             conexao.conectar();
             
             //instrucao SQL que sera executada
-            String sql = "SELECT * FROM produtos WHERE status = 'A Venda';";
+            String sql = "SELECT * FROM produtos WHERE status = 'Vendido';";
             PreparedStatement consulta = conexao.getConexao().prepareStatement(sql);
             
             //executa instrucao SQL
@@ -47,7 +47,7 @@ public class ProdutosListagemDAO {
             conexao.desconectar();
         } catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Erro ao tentar listar"
-                    + " produtos no banco de dados" + e.getMessage());
+                    + " produtos vendidos no banco de dados" + e.getMessage());
         }
         
         return lista;

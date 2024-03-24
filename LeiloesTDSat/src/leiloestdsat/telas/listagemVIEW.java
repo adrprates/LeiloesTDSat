@@ -1,9 +1,12 @@
 package leiloestdsat.telas;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import leiloestdsat.produto.ProdutosBuscarDAO;
 import leiloestdsat.produto.ProdutosDTO;
 import leiloestdsat.produto.ProdutosListagemDAO;
+import leiloestdsat.produto.ProdutosVenderDAO;
 
 /**
  *
@@ -120,20 +123,41 @@ public class listagemVIEW extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        //String id = id_produto_venda.getText();
+        //variavel
+        String strID = id_produto_venda.getText();
         
-        //ProdutosCadastrarDAO produtosdao = new ProdutosCadastrarDAO();
+        //declarando variavel para id
+        int id;
         
-        //produtosdao.venderProduto(Integer.parseInt(id));
-        //listarProdutos();
+        try{
+            id = Integer.parseInt(strID);
+            //verificando a existencia do produto
+            if(ProdutosBuscarDAO.buscarProduto(id)){
+                int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente vender esse produto?");
+                if(resposta == 0){
+                    ProdutosVenderDAO.venderProduto(id);
+               
+                    //atualiza os dados da tabela
+                    listaProdutos.setModel(montarTabela(ProdutosListagemDAO.listarProdutos()));
+                    jScrollPane1.setViewportView(listaProdutos);
+                }
+            } else{
+                JOptionPane.showMessageDialog(null, "Produto não existente ou já vendido.");
+        }
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Valor de ID inválido.");
+        }
+        
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
-        //vendasVIEW vendas = new vendasVIEW(); 
-        //vendas.setVisible(true);
+        vendaVIEW telaVenda = new vendaVIEW();
+        telaVenda.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnVendasActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

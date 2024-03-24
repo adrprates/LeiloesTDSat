@@ -135,6 +135,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastroNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroNomeActionPerformed
@@ -148,8 +149,15 @@ public class cadastroVIEW extends javax.swing.JFrame {
         String strValor = cadastroValor.getText();
         String strStatus = "A Venda";
         
-        //convertendo valor para BigDecimal
-        BigDecimal valorBigDecimal = new BigDecimal(strValor);
+        //declarando variavel para valor
+        BigDecimal valorBigDecimal;
+        
+        try{
+            //convertendo valor para BigDecimal
+            valorBigDecimal = new BigDecimal(strValor);
+        } catch(NumberFormatException e){
+            valorBigDecimal = new BigDecimal(-1);
+        }
         
         //criando objeto para produto
         ProdutosDTO p = new ProdutosDTO();
@@ -170,6 +178,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
         listagemVIEW listagem = new listagemVIEW(); 
         listagem.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnProdutosActionPerformed
 
     /**

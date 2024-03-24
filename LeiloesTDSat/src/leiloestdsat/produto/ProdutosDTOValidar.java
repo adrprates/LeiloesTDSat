@@ -29,12 +29,12 @@ public class ProdutosDTOValidar {
         boolean valorValido = valorString.matches("[0-9]{1,10}(\\.[0-9]{1,2})?");
         
         if(p.getNome().isBlank() || p.getNome().isEmpty()){
-            nomeInvalido = "Campo Nome precisa ser preenchido\n";
+            nomeInvalido = "Campo Nome precisa ser preenchido\n\n";
             tudoPreenchido = false;
         }
         
-        if(valorValido == false){
-            valorInvalido = "Valor com formato inválido.\nDigite valores inteiros ou decimais separados por (.)\nEx: 543 e 232.54";
+        if(valorValido == false || p.getValor().compareTo(BigDecimal.ZERO) <= 0){
+            valorInvalido = "Valor com formato inválido.\nDigite valores inteiros ou decimais maiores que 0 separados por (.)\nEx: 543 e 232.54";
             tudoPreenchido = false;
         }
         
