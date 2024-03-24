@@ -24,7 +24,7 @@ public class ProdutosBuscarDAO {
             conexao.conectar();
             
             //instrucao SQL que sera executada
-            String sql = "SELECT * FROM produtos WHERE id = ?;";
+            String sql = "SELECT * FROM produtos WHERE id = ? AND status = 'A Venda';";
             PreparedStatement consulta = conexao.getConexao().prepareStatement(sql);
             consulta.setInt(1, id);
             
